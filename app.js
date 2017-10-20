@@ -72,9 +72,9 @@ app.post('/api/accounts', (req, res) => {
 	// Creates new account post in DB
 	Account.create(newAccount, (err, newAccount) => {
 		if(err) {
-			res.render('new');
+			// res.render('new');
 		} else {
-			res.redirect('/api/accounts');
+			res.send({newAccount: newAccount});
 		}
 	})
 })
