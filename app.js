@@ -8,7 +8,7 @@ const express    	   = require('express'),
 	  mongoose   	   = require('mongoose'),
 	  methodOverride   = require('method-override'),
 	  expressSanitizer = require('express-sanitizer'),
-	  server           = require('http').Server(app)
+	  server           = require('http').Server(app);
 
 // Connect to my free-tier/sandbox mLab database
 mongoose.connect("mongodb://heroku_s25v6880:q8lvfeu1097soh3etk5vi057cv@ds153652.mlab.com:53652/heroku_s25v6880", {useMongoClient: true});
@@ -28,7 +28,7 @@ app.use(expressSanitizer());
 ///////////////////////////
 
 // Mongodb database schema
-const userSchema = new mongoose.Schema({
+const AccountSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	username: String,
@@ -36,7 +36,48 @@ const userSchema = new mongoose.Schema({
 	email: String
 });
 // Compile schema into mongoose model
-const User = mongoose.model('User', userSchema);
+const Account = mongoose.model('Account', AccountSchema);
+
+
+///////////////////////////
+// ROUTES
+///////////////////////////
+
+// Retrieve all user profiles from db
+app.get('/api/accounts', (req, res) => {
+	Account.find({}, (err, accounts) => {
+		if(err) {
+			
+		} else {
+			// Send user profiles
+			res.send({accounts: accounts});
+		}
+	})
+})
+
+// Create new user profile
+app.post('/api/accounts', (req, res) => {
+	// Removes any possible <script> from form submission
+	// req.body = req.sanitize(req.body);
+
+	// Build new account object
+	let newAccount = new Account({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		username: req.body.username,
+		password: req.body.password,
+		email: req.body.email
+	});
+
+	// Creates new account post in DB
+	Account.create(newAccount, (err, newAccount) => {
+		if(err) {
+			res.render('new');
+		} else {
+			res.redirect('/api/accounts');
+		}
+	})
+})
 
 ///////////////////////////
 // SERVER
