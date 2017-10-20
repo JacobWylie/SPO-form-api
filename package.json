@@ -1,0 +1,28 @@
+{
+  "name": "spo-form-api",
+  "version": "1.0.0",
+  "description": "Backend api for Service Partner ONE React junior dev",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobWylie/SPO-form-api.git"
+  },
+  "author": "Jacob Wylie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JacobWylie/SPO-form-api/issues"
+  },
+  "homepage": "https://github.com/JacobWylie/SPO-form-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-sanitizer": "^1.0.2",
+    "http": "0.0.0",
+    "method-override": "^2.3.10",
+    "mongoose": "^4.12.3"
+  }
+}
