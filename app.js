@@ -47,7 +47,7 @@ const Account = mongoose.model('Account', AccountSchema);
 app.get('/api/accounts', (req, res) => {
 	Account.find({}, (err, accounts) => {
 		if(err) {
-			
+			res.send('error');
 		} else {
 			// Send user profiles
 			res.send({accounts: accounts});
@@ -72,7 +72,7 @@ app.post('/api/accounts', (req, res) => {
 	// Creates new account post in DB
 	Account.create(newAccount, (err, newAccount) => {
 		if(err) {
-			
+			res.send('error');
 		} else {
 			res.send({newAccount: newAccount});
 		}
@@ -80,10 +80,10 @@ app.post('/api/accounts', (req, res) => {
 })
 
 // Retrieve a specific account by :id
-app.get('api/accounts/:id', (req, res) => {
+app.get('/api/accounts/:id', (req, res) => {
 	Account.findById(req.params.id, (err, foundAccount) => {
 		if(err) {
-
+			res.send('error');
 		} else {
 			res.send({account: foundAccount});
 		}
@@ -91,12 +91,12 @@ app.get('api/accounts/:id', (req, res) => {
 })
 
 // Delete an account by :id
-app.delete('/accounts/:id', (req, res) => {
+app.delete('/api/accounts/:id', (req, res) => {
 	Account.findByIdAndRemove(req.params.id, err => {
 		if(err) {
-
+			res.send('error');
 		} else {
-			
+			res.send('account deleted');
 		}
 	})
 })
