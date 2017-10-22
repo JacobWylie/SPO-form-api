@@ -8,7 +8,8 @@ const express    	   = require('express'),
 	  mongoose   	   = require('mongoose'),
 	  methodOverride   = require('method-override'),
 	  expressSanitizer = require('express-sanitizer'),
-	  server           = require('http').Server(app);
+	  server           = require('http').Server(app),
+	  cors = require('cors');
 
 // Connect to my free-tier/sandbox mLab database
 mongoose.connect("mongodb://heroku_s25v6880:q8lvfeu1097soh3etk5vi057cv@ds153652.mlab.com:53652/heroku_s25v6880", {useMongoClient: true});
@@ -16,6 +17,8 @@ mongoose.connect("mongodb://heroku_s25v6880:q8lvfeu1097soh3etk5vi057cv@ds153652.
 // Parse data through body/form
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 // Overrides POST request to PUT/DELETE in HTML form | No such method in HTML 5 yet
 app.use(methodOverride('_method'));
