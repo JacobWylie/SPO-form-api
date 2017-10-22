@@ -15,6 +15,7 @@ mongoose.connect("mongodb://heroku_s25v6880:q8lvfeu1097soh3etk5vi057cv@ds153652.
 
 // Parse data through body/form
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Overrides POST request to PUT/DELETE in HTML form | No such method in HTML 5 yet
 app.use(methodOverride('_method'));
@@ -32,7 +33,6 @@ const AccountSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	username: String,
-	password: String,
 	email: String
 });
 // Compile schema into mongoose model
