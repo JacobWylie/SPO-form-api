@@ -9,7 +9,7 @@ const express    	   = require('express'),
 	  methodOverride   = require('method-override'),
 	  expressSanitizer = require('express-sanitizer'),
 	  server           = require('http').Server(app),
-	  cors = require('cors');
+	  cors             = require('cors');
 
 // Connect to my free-tier/sandbox mLab database
 mongoose.connect("mongodb://heroku_s25v6880:q8lvfeu1097soh3etk5vi057cv@ds153652.mlab.com:53652/heroku_s25v6880", {useMongoClient: true});
@@ -109,8 +109,8 @@ app.delete('/api/accounts/:id', (req, res) => {
 ///////////////////////////
 
 // Run app on an open port on Digital Ocean. Use PM2.
-server.listen(8085, () => {
-    console.log("App is running on port 8085");
+server.listen(8084, () => {
+    console.log("App is running on port 8084");
 });
 
 
