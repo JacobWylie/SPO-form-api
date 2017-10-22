@@ -79,6 +79,28 @@ app.post('/api/accounts', (req, res) => {
 	})
 })
 
+// Retrieve a specific account by :id
+app.get('api/accounts/:id', (req, res) => {
+	Account.findById(req.params.id, (err, foundAccount) => {
+		if(err) {
+
+		} else {
+			res.send({account: foundAccount});
+		}
+	})
+})
+
+// Delete an account by :id
+app.delete('/accounts/:id', (req, res) => {
+	Account.findByIdAndRemove(req.params.id, err => {
+		if(err) {
+
+		} else {
+			
+		}
+	})
+})
+
 ///////////////////////////
 // SERVER
 ///////////////////////////
